@@ -9,24 +9,11 @@ export const instance = axios.create({
   headers: {
     Authorization: `Bearer ${getLoginCookie()}`,
     "Content-Type": "application/json",
-  },
-});
-
-instance.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${getLoginCookie()}`;
-  return config;
-});
-
-export const hostAddInstance = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${getLoginCookie()}`,
-    "Content-Type": "application/json",
     "X-Forwarded-Host": deployUrl,
   },
 });
 
-hostAddInstance.interceptors.request.use(config => {
+instance.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${getLoginCookie()}`;
   return config;
 });
