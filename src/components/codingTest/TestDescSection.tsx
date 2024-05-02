@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { Question_I, Bookmark_I } from "./../../interface";
+import { useCookies } from "react-cookie";
 
 interface TestDescSectionProps {
   descWidth?: number;
@@ -7,6 +8,9 @@ interface TestDescSectionProps {
 }
 
 export const TestDescSection = ({ descWidth, question }: TestDescSectionProps) => {
+  const [cookies] = useCookies(["googtrans"]);
+  const isGoogTransEn = cookies.googtrans === "/ko/en";
+
   return (
     <DescSection style={{ width: `${descWidth}%` }}>
       <DescArticle>
@@ -23,21 +27,21 @@ export const TestDescSection = ({ descWidth, question }: TestDescSectionProps) =
       </DescArticle>
       <DescArticle>
         <strong>입출력 예</strong>
-        <InputAndOutput>
+        <InputAndOutput className="notranslate">
           <div>
-            <p>예제 입력 1</p>
+            <p>{isGoogTransEn ? "Exmaple Input 1" : "예제 입력 1"}</p>
             <p>{question?.input_1}</p>
           </div>
           <div>
-            <p>예제 출력 1</p>
+            <p>{isGoogTransEn ? "Exmaple Output 1" : "예제 출력 1"}</p>
             <p>{question?.output_1}</p>
           </div>
           <div>
-            <p>예제 입력 2</p>
+            <p>{isGoogTransEn ? "Exmaple Input 2" : "예제 입력 2"}</p>
             <p>{question?.input_2}</p>
           </div>
           <div>
-            <p>예제 출력 2</p>
+            <p>{isGoogTransEn ? "Exmaple Output 2" : "예제 출력 2"}</p>
             <p>{question?.output_2}</p>
           </div>
         </InputAndOutput>
