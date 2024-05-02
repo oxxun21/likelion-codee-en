@@ -1,0 +1,48 @@
+{
+  "homepage": "https://code-catcher-fe.azurewebsites.net",
+  "name": "code-catcher-fe",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@monaco-editor/react": "^4.6.0",
+    "@types/react-datepicker": "^6.2.0",
+    "axios": "^1.6.7",
+    "emotion": "^11.0.0",
+    "monaco-themes": "^0.4.4",
+    "react": "^18.2.0",
+    "react-cookie": "^7.1.0",
+    "react-datepicker": "^6.3.0",
+    "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
+    "react-helmet-async": "^2.0.4",
+    "react-router-dom": "^6.22.1",
+    "sweetalert2": "^11.10.7",
+    "sweetalert2-react-content": "^5.0.7",
+    "zustand": "^4.5.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@types/react-monaco-editor": "^0.16.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.4"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
