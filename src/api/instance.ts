@@ -2,6 +2,8 @@ import axios from "axios";
 import { getLoginCookie } from "../utils/loginCookie.ts";
 import BASE_URL from "../utils/BASE_URL.ts";
 
+const deployUrl = import.meta.env.VITE_DEPLOY_URL;
+
 export const instance = axios.create({
   baseURL: BASE_URL,
   headers: {
@@ -11,6 +13,20 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use(config => {
+  config.headers.Authorization = `Bearer ${getLoginCookie()}`;
+  return config;
+});
+
+export const hostAddInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    Authorization: `Bearer ${getLoginCookie()}`,
+    "Content-Type": "application/json",
+    "X-Forwarded-Host": deployUrl,
+  },
+});
+
+hostAddInstance.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${getLoginCookie()}`;
   return config;
 });

@@ -1,5 +1,5 @@
 import { NavigateFunction } from "react-router-dom";
-import { instance } from "./instance.ts";
+import { hostAddInstance } from "./instance.ts";
 import { UserState } from "../interface";
 import { setLoginCookie } from "../utils/loginCookie.ts";
 import { useEventTracker } from "../hook/useEventTracker.tsx";
@@ -8,7 +8,7 @@ export const getLoginAPI = async (code: string, navigate: NavigateFunction, setU
   const trackEvent = useEventTracker();
 
   try {
-    const response = await instance.get(`kakao/callback?code=${code}`);
+    const response = await hostAddInstance.get(`kakao/callback?code=${code}`);
     const resData = response.data;
     if (resData) {
       const { jwt, isNew, ...userInfo } = resData;
