@@ -31,7 +31,7 @@ export const SelectLang = ({ language, setLanguage }: LangProps) => {
 
   return (
     <LangSelect ref={dropdownRef}>
-      <button onClick={toggleDropdown}>
+      <button onClick={toggleDropdown} className="notranslate">
         {language === "javascript" ? "Node.js" : language}
         <img src={icon_dropdown} alt="드롭다운" />
       </button>

@@ -20,8 +20,37 @@ import { metaData } from "./meta/metaData";
 import { HelmetRootMetaTags } from "./components";
 import { getLoginCookie } from "./utils/loginCookie";
 import { useWindowSize } from "./hook";
+import { useEffect, useRef, useState } from "react";
+import { useCookies } from "react-cookie";
+import { loadGoogleTranslate, refreshTranslateElement } from "./utils/googleTranslate";
 
 function App() {
+  const translateElementRef = useRef<HTMLDivElement>(null);
+  const [translateWidgetLoaded, setTranslateWidgetLoaded] = useState<boolean>(false);
+  const [cookies, setCookie] = useCookies(["googtrans"]);
+
+  useEffect(() => {
+    if (translateElementRef.current) {
+      loadGoogleTranslate(setTranslateWidgetLoaded, setCookie, refreshTranslateElement, translateElementRef.current.id);
+    }
+  }, [setCookie]);
+
+  useEffect(() => {
+    const targetLanguage = "en";
+    const initialCookie = "/ko/en";
+
+    // 초기 쿠키 설정
+    if (!cookies.googtrans) {
+      setCookie("googtrans", initialCookie, { path: "/" });
+    }
+
+    // 쿠키가 변경되었을 때 refreshTranslateElement 호출
+    if (cookies.googtrans !== initialCookie && translateWidgetLoaded) {
+      refreshTranslateElement(targetLanguage);
+      setCookie("googtrans", initialCookie, { path: "/" });
+    }
+  }, [cookies.googtrans, translateWidgetLoaded, setCookie]);
+
   const PrivateRoutes = () => {
     return getLoginCookie() ? <Outlet /> : <Navigate to="/splash" replace />;
   };
@@ -37,6 +66,7 @@ function App() {
       <HelmetProvider>
         <HelmetRootMetaTags meta={metaData.app} />
         <BrowserRouter>
+          <div ref={translateElementRef} id="google_translate_element" style={{ display: "none" }}></div>
           <RouteChangeTracker />
           <Global
             styles={css`
