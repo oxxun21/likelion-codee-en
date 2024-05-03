@@ -123,7 +123,7 @@ const Slide = styled.div`
   gap: 20px;
   min-height: 300px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 880px) {
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -140,11 +140,10 @@ const Slide = styled.div`
     min-width: fit-content;
     margin-top: 165px;
 
-    @media (min-width: 768px) and (max-width: 880px) {
-      overflow-x: hidden;
+    @media only screen and (max-width: 880px) {
+      /* overflow-x: hidden; */
       flex: 0;
     }
-
     @media only screen and (max-width: 480px) {
       margin-top: 0;
       flex: 0;
@@ -152,7 +151,7 @@ const Slide = styled.div`
   }
 
   & h2 {
-    width: fit-content;
+    /* width: 100%; */
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 1rem;
@@ -160,7 +159,7 @@ const Slide = styled.div`
     color: var(--black-color);
     line-height: 130%;
 
-    @media (max-width: 768px) {
+    @media (max-width: 880px) {
       text-align: center;
     }
 
@@ -172,12 +171,15 @@ const Slide = styled.div`
   }
 
   & p {
-    width: fit-content;
+    /* width: 100%; */
     font-size: 1rem;
     white-space: pre-wrap;
     color: var(--gray700-color);
     line-height: 156%;
 
+    @media (max-width: 880px) {
+      text-align: center;
+    }
     @media only screen and (max-width: 480px) {
       position: absolute;
       visibility: hidden;
@@ -189,11 +191,7 @@ const Slide = styled.div`
     height: auto;
     flex-shrink: 0.5;
 
-    @media (min-width: 768px) and (max-width: 880px) {
-      width: 520px;
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 880px) {
       width: 520px;
     }
 
@@ -238,7 +236,7 @@ const CarouselControls = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 880px) {
     top: 1.875rem;
     transform: translateX(-50%);
     left: 50%;
