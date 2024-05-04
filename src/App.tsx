@@ -7,6 +7,7 @@ import googleTranslate from "./style/googleTranslate";
 import { Home } from "./page/Home";
 import { Splash } from "./page/Splash";
 import { KakaoRedirection } from "./page/KakaoRedirection";
+import { GoogleRedirection } from "./page/GoogleRedirection";
 import { CodingTest } from "./page/CodingTest";
 import { CodeCompare } from "./page/CodeCompare";
 import { NotFound } from "./page/NotFound";
@@ -39,12 +40,10 @@ function App() {
     const targetLanguage = "en";
     const initialCookie = "/ko/en";
 
-    // 초기 쿠키 설정
     if (!cookies.googtrans) {
       setCookie("googtrans", initialCookie, { path: "/" });
     }
 
-    // 쿠키가 변경되었을 때 refreshTranslateElement 호출
     if (cookies.googtrans !== initialCookie && translateWidgetLoaded) {
       refreshTranslateElement(targetLanguage);
       setCookie("googtrans", initialCookie, { path: "/" });
@@ -78,7 +77,7 @@ function App() {
           <Routes>
             <Route path="/splash" element={<Splash />} />
             <Route path="/kakao/callback" element={<KakaoRedirection />} />
-
+            <Route path="/google/callback" element={<GoogleRedirection />} />
             <Route element={<PrivateRoutes />}>
               <Route path="/" element={<Home />} />
               <Route path="/bookmark/:id" element={<Bookmark />} />

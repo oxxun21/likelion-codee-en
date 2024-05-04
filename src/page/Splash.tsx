@@ -10,6 +10,7 @@ export const Splash = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const backgroundColors = ["#F5D3D3", "#D3E7F5", "#F5E9D3", "#D9F5D3"];
   const currentBgColor = backgroundColors[currentSlide];
+  const trackEvent = useEventTracker();
 
   const { width } = useWindowSize();
   const isMobile = (width ?? 0) <= 480;
@@ -19,7 +20,6 @@ export const Splash = () => {
     const rediretUri = import.meta.env.VITE_KAKAO_REDIRECT_URI;
     const link = `https://kauth.kakao.com/oauth/authorize?client_id=${kakaoRestApi}&redirect_uri=${rediretUri}&response_type=code`;
 
-    const trackEvent = useEventTracker();
     trackEvent({
       category: "Auth",
       action: "login",
@@ -33,6 +33,12 @@ export const Splash = () => {
     const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
     const redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI;
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=email`;
+
+    trackEvent({
+      category: "Auth",
+      action: "login",
+      label: "Google",
+    });
 
     window.location.href = authUrl;
   };
