@@ -5,6 +5,7 @@ import KakaoImg from "../assets/kakao_logo.svg";
 import googleImg from "../assets/googleLogo.svg";
 import { metaData } from "../meta/metaData.ts";
 import { useEventTracker, useWindowSize } from "../hook";
+import { useCookies } from "react-cookie";
 
 export const Splash = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -14,6 +15,8 @@ export const Splash = () => {
 
   const { width } = useWindowSize();
   const isMobile = (width ?? 0) <= 480;
+  const [cookies] = useCookies(["googtrans"]);
+  const isGoogTransEn = cookies.googtrans === "/ko/en";
 
   const handleKakaoLogin = () => {
     const kakaoRestApi = import.meta.env.VITE_KAKAO_REST_API;
@@ -59,7 +62,7 @@ export const Splash = () => {
                 </StyledButton>
                 <StyledButton onClick={handleGoogleLogin}>
                   <img src={googleImg} alt="구글 소셜 로고" />
-                  구글 로그인
+                  {isGoogTransEn ? "Google Login" : "구글 로그인"}
                 </StyledButton>
               </LoginContain>
             )}
@@ -73,7 +76,7 @@ export const Splash = () => {
             </StyledButton>
             <StyledButton onClick={handleGoogleLogin}>
               <img src={googleImg} alt="구글 소셜 로고" />
-              구글 로그인
+              {isGoogTransEn ? "Google Login" : "구글 로그인"}
             </StyledButton>
           </LoginContain>
         )}
