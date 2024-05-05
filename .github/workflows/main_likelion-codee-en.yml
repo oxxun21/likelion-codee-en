@@ -36,6 +36,8 @@ jobs:
           VITE_KAKAO_REDIRECT_URI: ${{ secrets.VITE_KAKAO_REDIRECT_URI }}
           VITE_BASE_URL_BACK: ${{ secrets.VITE_BASE_URL_BACK }}
           VITE_GA_TRACKING_ID: ${{ secrets.VITE_GA_TRACKING_ID }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_GOOGLE_REDIRECT_URL: ${{ secrets.VITE_GOOGLE_REDIRECT_URL }}
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -76,3 +78,5 @@ jobs:
           VITE_KAKAO_REDIRECT_URI: ${{ secrets.VITE_KAKAO_REDIRECT_URI }}
           VITE_BASE_URL_BACK: ${{ secrets.VITE_BASE_URL_BACK }}
           VITE_GA_TRACKING_ID: ${{ secrets.VITE_GA_TRACKING_ID }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
+          VITE_GOOGLE_REDIRECT_URL: ${{ secrets.VITE_GOOGLE_REDIRECT_URL }}
