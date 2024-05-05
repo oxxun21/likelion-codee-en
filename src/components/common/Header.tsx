@@ -193,7 +193,7 @@ export const Header = memo(() => {
         </h1>
         <StyledLeftNav>
           {!isLoggedIn ? (
-            <StyledLoginBtn onClick={handleKakaoLogin}>{isGoogTransEn ? "Login" : "로그인"}</StyledLoginBtn>
+            <StyledLoginBtn onClick={handleKakaoLogin}>{isGoogTransEn ? "Login" : "로그인"}</StyledLoginBtn> // 로그인 방법이 두개가 되서 헤더 로그인 삭제하는게 맞을 것 같아요
           ) : (
             <StyledBtnGroup>
               <button onClick={() => openModal("logout")}>{isGoogTransEn ? "Logout" : "로그아웃"}</button>

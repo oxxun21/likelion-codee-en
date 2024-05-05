@@ -1,10 +1,10 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useUserStore } from "../stores/useUserStore.ts";
-import { getKakaoLoginAPI } from "../api";
+import { getGoogleLoginAPI } from "../api";
 import { Loading } from "../components";
 
-export const KakaoRedirection = () => {
+export const GoogleRedirection = () => {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export const KakaoRedirection = () => {
 
   useEffect(() => {
     if (code) {
-      getKakaoLoginAPI(code, navigate, setUserInfo).catch(console.error);
+      getGoogleLoginAPI(code, navigate, setUserInfo).catch(console.error);
     }
   }, [code, navigate, setUserInfo]);
 
