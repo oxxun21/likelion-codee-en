@@ -25,6 +25,13 @@ import { useEffect, useRef, useState } from "react";
 import { useCookies } from "react-cookie";
 import { loadGoogleTranslate, refreshTranslateElement } from "./utils/googleTranslate";
 
+declare global {
+  interface Window {
+    google: any;
+    googleTranslateElementInit?: () => void;
+  }
+}
+
 function App() {
   const translateElementRef = useRef<HTMLDivElement>(null);
   const [translateWidgetLoaded, setTranslateWidgetLoaded] = useState<boolean>(false);
